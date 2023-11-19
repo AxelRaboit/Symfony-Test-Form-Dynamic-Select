@@ -3,7 +3,14 @@
 {% block title %}Leave us a message{% endblock %}
 
 {% block body %}
-    <h1>Are you facing any issues ?</h1>
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <h1 class="display-4 my-5 text-center">Are you facing any <span class="text-danger">issues</span> ?</h1>
 
-    {{ form(form) }}
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="btn btn-primary w-100">Send</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}
