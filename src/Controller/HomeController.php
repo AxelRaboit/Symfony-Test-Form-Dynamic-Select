@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Issue;
 use App\Form\IssueFormType;
+use App\Manager\IssueManager;
 use App\Repository\CountryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(Request $request, EntityManagerInterface $em): Response
+    public function index(Request $request, IssueManager $issueManager): Response
     {
         $issue = new Issue();
 
@@ -23,8 +24,7 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($issue);
-            $em->flush();
+            $issueManager->save($issue);
 
             $this->addFlash('success', 'Your issue has been submitted!');
 
