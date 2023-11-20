@@ -6,7 +6,6 @@ use App\Entity\City;
 use App\Entity\Country;
 use App\Repository\CityRepository;
 use App\Repository\CountryRepository;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
