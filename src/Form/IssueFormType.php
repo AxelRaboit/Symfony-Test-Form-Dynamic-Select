@@ -70,6 +70,7 @@ class IssueFormType extends AbstractType
             ]);
         };
 
+        // This is used to set the initial value of the city field
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
             function (FormEvent $event) use ($formModifier) {
@@ -77,6 +78,9 @@ class IssueFormType extends AbstractType
             $formModifier($event->getForm(), $data->getCountry());
         });
 
+        // This is used to update the city field when the country field is changed
+        /* POST_SUBMIT means that this event is triggered after the form is submitted
+        (the form is only equal to the field that triggered the event, not the whole form) */
         $builder->get('country')->addEventListener(
             FormEvents::POST_SUBMIT,
             function (FormEvent $event) use ($formModifier) {
