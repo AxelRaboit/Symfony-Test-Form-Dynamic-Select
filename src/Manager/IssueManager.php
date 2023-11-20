@@ -3,17 +3,11 @@
 namespace App\Manager;
 
 use App\Entity\Issue;
-use Doctrine\ORM\EntityManagerInterface;
 
-class IssueManager
+class IssueManager extends AbstractManager
 {
-    public function __construct(private readonly EntityManagerInterface $em)
+    public function handleSave(Issue $issue): void
     {
-    }
-
-    public function save(Issue $issue): void
-    {
-        $this->em->persist($issue);
-        $this->em->flush();
+        $this->save($issue);
     }
 }

@@ -22,7 +22,7 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $issueManager->save($issue);
+            $issueManager->handleSave($issue);
 
             $this->addFlash('success', 'Your issue has been submitted!');
 
