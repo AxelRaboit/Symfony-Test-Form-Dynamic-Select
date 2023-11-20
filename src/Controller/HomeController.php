@@ -5,8 +5,6 @@ namespace App\Controller;
 use App\Entity\Issue;
 use App\Form\IssueFormType;
 use App\Manager\IssueManager;
-use App\Repository\CountryRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
