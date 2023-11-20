@@ -6,11 +6,41 @@
     <div class="row">
         <div class="col-6 mx-auto">
             <h1 class="display-4 my-5 text-center">Are you facing any <span class="text-danger">issues</span> ?</h1>
-
             {{ form_start(form) }}
-            {{ form_widget(form) }}
-            <button type="submit" class="btn btn-primary w-100">Send</button>
+                {{ form_row(form.name) }}
+                {{ form_row(form.country) }}
+                {{ form_row(form.city) }}
+                {{ form_row(form.message) }}
+                <button type="submit" class="btn btn-primary w-100">Send</button>
             {{ form_end(form) }}
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const countrySelectEl = document.getElementById('issue_form_country');
+
+            countrySelectEl.addEventListener('change', function() {
+                const formEl = countrySelectEl.closest('form');
+                const formData = new FormData(formEl);
+
+                fetch(formEl.action, {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.text())
+                    .then(html => {
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(html, 'text/html');
+                        const newCityFormFieldEl = doc.getElementById('issue_form_city');
+                        document.getElementById('issue_form_city').replaceWith(newCityFormFieldEl);
+                    })
+                    .catch(err => {
+                        console.warn('Something went wrong.', err);
+                    });
+            });
+        });
+    </script>
 {% endblock %}
