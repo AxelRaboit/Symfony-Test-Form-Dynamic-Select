@@ -1,0 +1,15 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}Issue List{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-6 mx-auto">
+            {% for issue in issues %}
+                <h2><a href="{{ path('app_issue_show', {'id': issue.id}) }}">{{ issue.name }}</a></h2>
+                <p>{{ issue.message }}</p>
+            {% endfor %}
+            <a href="{{ path('app_home') }}" class="btn btn-primary mb-5">Back to Home</a>
+        </div>
+    </div>
+{% endblock %}

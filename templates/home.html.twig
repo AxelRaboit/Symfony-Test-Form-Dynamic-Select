@@ -6,12 +6,15 @@
     <div class="row">
         <div class="col-6 mx-auto">
             <h1 class="display-4 my-5 text-center">Are you facing any <span class="text-danger">issues</span> ?</h1>
+            <div class="text-center">
+                <a href="{{ path('app_issue_list') }}" class="btn btn-primary mb-5">Issue List</a>
+            </div>
             {{ form_start(form) }}
                 {{ form_row(form.name) }}
                 {{ form_row(form.country) }}
                 {{ form_row(form.city) }}
                 {{ form_row(form.message) }}
-                <button type="submit" class="btn btn-primary w-100">Send</button>
+                <button type="submit" class="btn btn-primary w-100 mb-5">Send</button>
             {{ form_end(form) }}
         </div>
     </div>
