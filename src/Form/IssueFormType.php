@@ -18,6 +18,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class IssueFormType extends AbstractType
 {
@@ -48,6 +49,11 @@ class IssueFormType extends AbstractType
                         ->orderBy('c.name', 'ASC');
                 },
             ])
+            ->add('imageFile', VichImageType::class, [
+                'required' => false,
+                'allow_delete' => false,
+                'download_uri' => false,
+            ])
             ->add('message', TextareaType::class, [
                 'attr' => [
                     'rows' => 5,
@@ -63,6 +69,7 @@ class IssueFormType extends AbstractType
 
             $form->add('city', EntityType::Class, [
                 'placeholder' => 'Select a city',
+                'required' => true,
                 'class' => City::class,
                 'disabled' => $country == null,
                 'choice_label' => 'name',

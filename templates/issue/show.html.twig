@@ -8,7 +8,10 @@
             <h1>Issue {{ issue.name }}</h1>
             <p>{{ issue.message }}</p>
             <p>{{ issue.city.name }}, {{ issue.country.name }}</p>
-            <a href="{{ path('app_issue_list') }}" class="btn btn-primary mb-5">Back to the list</a>
+            {% if issue.imageName is not null or issue.imageName != "" %}
+                <img alt="image issue" class="mb-5" src="{{ vich_uploader_asset(issue, 'imageFile') }}">
+            {% endif %}
+            <a href="{{ path('app_issue_list') }}" class="btn btn-primary my-5">Back to the list</a>
         </div>
     </div>
 {% endblock %}

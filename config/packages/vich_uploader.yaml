@@ -1,0 +1,10 @@
+vich_uploader:
+    db_driver: orm
+    metadata:
+        type: attribute
+
+    mappings:
+        issue_images:
+            uri_prefix: /images/issue_images
+            upload_destination: '%kernel.project_dir%/public/images/issue_images'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
